@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    schema: classpath:db/schema-mysql.sql
+    data: classpath:db/data.sql
+
+log:
+  level:
+    tech.hongjian.blog.db.mapper: debug
+
+# mapper
+mapper:
+  indentity: MYSQL
+
+# pagehelper
+pagehelper:
+  helperDailect: mysql

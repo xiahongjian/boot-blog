@@ -1,0 +1,64 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-locations: classpath:/static,classpath:/templates/themes/default/static,${web.upload-path}
+    static-path-pattern: /static/**
+  datasource:
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      validation-query: select 1
+#      validation-query-timeout:
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+#      filters: stat,log4j
+      # stat filter
+      stat-view-servlet:
+        login-username: druid
+        login-password: druid
+#        url-pattern: /duird/*
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/blog?userUnicode=true&characterEncoding=utf-8
+#      username: root
+#      password: root
+  freemarker:
+    request-context-attribute: request
+    expose-request-attributes: true
+    expose-session-attributes: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+logging:
+  path: ./logs
+
+
+# mybatis
+mybatis:
+  type-aliases-package: tech.hongjian.blog.db.entity,tech.hongjian.blog.db.dto
+#  typeHandlersPackage: tech.hongjian.blog.db.handler
+  mapper-locations: classpath:mapper/*.xml
+
+
+# mapper
+mapper:
+  not-empty: false
+  indentity: MYSQL
+
+# pagehelper
+pagehelper:
+  helperDailect: mysql
+  reasonable: true
+  supportMethodArgument: true
+  param: count=countSql
+
+web:
+  upload-path: ./upload

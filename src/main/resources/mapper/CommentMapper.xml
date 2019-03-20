@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.hongjian.blog.db.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="tech.hongjian.blog.db.entity.Comment" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="author_id" property="authorId" jdbcType="INTEGER" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="agent" property="agent" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="parent" property="parent" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <select id="getArticleComments" resultMap="BaseResultMap">
+    select *
+    from `comment`
+    where cid = #{cid} and
+    <choose>
+      <when test="parent != null">
+        parent = #{parent}
+      </when>
+      <when test="parent == null">
+        parent is null
+      </when>
+    </choose>
+    order by created
+  </select>
+</mapper>
