@@ -46,6 +46,4 @@ public class BlogConsts {
 
     public static final String MAPPER_PACKAGE = "tech.hongjian.blog.db.mapper";
 
-
-
 }

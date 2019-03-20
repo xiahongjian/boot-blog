@@ -102,5 +102,5 @@ CREATE TABLE `user` (
   activated   INTEGER(10),
   logged      INTEGER(10),
   group_name  VARCHAR(16)
-)
+);
 

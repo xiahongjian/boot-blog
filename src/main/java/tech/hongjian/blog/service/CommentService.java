@@ -86,6 +86,12 @@ public class CommentService {
                 throw new ServiceException("回复的评论不存在");
             }
         }
+        Content content = contentService.selectById(comment.getCid());
+        if (content == null) {
+            throw new ServiceException("回复的文章不存在");
+        }
+        content.setCommentsNum(BlogUtils.addOne(content.getCommentsNum()));
+        contentService.update(content);
         save(comment);
     }
 

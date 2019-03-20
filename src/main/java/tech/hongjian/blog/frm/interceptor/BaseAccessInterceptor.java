@@ -58,7 +58,7 @@ public class BaseAccessInterceptor extends HandlerInterceptorAdapter {
     private boolean isRedirect(HttpServletRequest request,
                                HttpServletResponse response) throws IOException {
         // TODO FOR TEST
-        WebUtil.setTestUser("admin");
+//        WebUtil.setTestUser("admin");
 
         User user = WebUtil.getLoginUser();
         if (user != null)

@@ -65,7 +65,7 @@
                     </div>
                     <#else>
                     <ul class="list-group">
-                        <#list coments.list as comment>
+                        <#list comments.list as comment>
                         <li class="list-group-item">
                             <#if comment.url??>
                             <a href="${comment.url!}" target="_blank">${comment.author!}</a>

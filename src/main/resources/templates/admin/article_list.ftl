@@ -41,7 +41,7 @@
                        class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
                             class="fa fa-trash-o"></i> <span>删除</span></a>
                     <#if post.status == 'publish'>
-                    <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" href="${request.contextPath}/article/<#if post.slug??>${post.slug}<#else>${post.id}</#if>"
+                    <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" href="${request.contextPath}/article/<#if !isBlanck(post.slug)>${post.slug}<#else>${post.id}</#if>"
                        target="_blank"><i
                             class="fa fa-rocket"></i> <span>预览</span></a>
                     </#if>

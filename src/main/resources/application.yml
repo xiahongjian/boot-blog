@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   mvc:
-    static-locations: classpath:/static,classpath:/templates/themes/default/static,${web.upload-path}
+    static-locations: classpath:/static,classpath:/templates/themes/default/static,file:${web.upload-path}
     static-path-pattern: /static/**
   datasource:
     druid:

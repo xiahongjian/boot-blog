@@ -67,9 +67,9 @@
         <#else>
         <#list attaches.list as attach>
         <div class="col-md-2 text-center m-t-10">
-            <a href="${attach_url}${attach.fkey}" target="_blank">
+            <a href="${attach_url}/${attach.fkey}" target="_blank">
                 <img class="attach-img"
-                     src="<#if attach.ftype == 'image'>${attach_url}${attach.fkey}<#else>${request.contextPath}/static/admin/images/attach.png </#if>"
+                     src="<#if attach.ftype == 'image'>${attach_url}/${attach.fkey}<#else>${request.contextPath}/static/admin/images/attach.png </#if>"
                      title="${attach.fname!}"/>
             </a>
             <div class="clearfix m-t-10">
@@ -77,7 +77,7 @@
                       data-original-title="${attach.fname}">${brief(attach.fname, 12)}</span>
             </div>
             <div class="clearfix">
-                <button url="${attach_url}${attach.fkey}" type="button"
+                <button url="${attach_url}/${attach.fkey}" type="button"
                         class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
                     <i class="fa fa-copy"></i> <span>复制</span>
                 </button>

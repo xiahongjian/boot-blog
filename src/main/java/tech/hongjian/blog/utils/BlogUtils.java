@@ -54,13 +54,13 @@ public class BlogUtils {
     }
 
     public static boolean isInstalled() {
-        String path = "./install.lock";
+        String path = "install.lock";
         File lockFile = new File(path);
         return lockFile.exists();
     }
 
     public static void createLockFile() {
-        String path = WebUtil.getClassPath() + "install.lock";
+        String path = "install.lock";
         File lockFile = new File(path);
         try {
             lockFile.createNewFile();
@@ -73,17 +73,16 @@ public class BlogUtils {
 
 
     public static String getFileKey(String name) {
-        String dir =
-                "./upload/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(
-                        "yyyyy/MM"));
-        if (!Files.exists(Paths.get(dir))) {
-            new File(dir).mkdirs();
+        String dir = LocalDateTime.now().format(DateTimeFormatter.ofPattern(
+                        "yyyy/MM"));
+        if (!Files.exists(Paths.get("upload/" + dir))) {
+            new File("upload/" + dir).mkdirs();
         }
         return dir + "/" + getUUID() + "." + fileExt(name);
     }
 
     public static String getFilePath(String name) {
-        return Paths.get(WebUtil.getClassPath(), "static", name).toString();
+        return Paths.get("upload/", name).toString();
     }
 
     public static String getUUID() {
