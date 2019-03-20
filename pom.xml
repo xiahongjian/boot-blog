@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>xiahongjian</groupId>
-	<artifactId>blog</artifactId>
+	<artifactId>boot-blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
-	<name>blog</name>
+	<name>boot-blog</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
