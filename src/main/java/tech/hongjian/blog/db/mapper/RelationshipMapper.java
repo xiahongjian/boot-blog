@@ -12,6 +12,6 @@ public interface RelationshipMapper extends Mapper<Relationship> {
     @Select("select * from `relationship` where cid=#{cid} and mid=#{mid}")
     List<Relationship> selectByParams(@Param("cid") Integer cid, @Param("mid") Integer mid);
 
-    @Delete("delete `relationship` where cid=#{id}")
+    @Delete("delete from `relationship` where cid=#{id}")
     void deleteByCid(@Param("id") Integer id);
 }

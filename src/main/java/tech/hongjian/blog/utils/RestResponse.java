@@ -51,7 +51,7 @@ public class RestResponse<T> {
     }
 
     public static <T> RestResponse ok(T payload) {
-        return RestResponse.builder().success(true).build();
+        return RestResponse.builder().success(true).payload(payload).build();
     }
 
     public static RestResponse fail() {

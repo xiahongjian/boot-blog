@@ -52,11 +52,11 @@
         <#elseif type == "article_edit_head">
         <link href="//cdn.bootcss.com/multi-select/0.9.12/css/multi-select.min.css" rel="stylesheet"/>
         <link href="//cdn.bootcss.com/select2/3.4.8/select2.min.css" rel="stylesheet"/>
-        <link href="//static.biezhi.me/mditor/css/mditor.min.css" rel="stylesheet"/>
+        <link href="${request.contextPath}/static/admin/plugins/mditor/css/mditor.min.css" rel="stylesheet">
         <link href="//cdn.bootcss.com/summernote/0.8.2/summernote.css" rel="stylesheet">
         <link href="//cdn.bootcss.com/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet">
         <#elseif type == "article_edit_foot">
-        <script src="//static.biezhi.me/mditor/js/mditor.min.js"></script>
+        <script src="${request.contextPath}/static/admin/plugins/mditor/js/mditor.min.js"></script>
         <script src="//cdn.bootcss.com/wysihtml5/0.3.0/wysihtml5.min.js"></script>
         <script src="//cdn.bootcss.com/summernote/0.8.2/summernote.min.js"></script>
         <script src="//cdn.bootcss.com/summernote/0.8.2/lang/summernote-zh-CN.min.js"></script>

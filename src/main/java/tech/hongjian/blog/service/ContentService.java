@@ -129,7 +129,7 @@ public class ContentService {
         if (content.getContent().length() > BlogConsts.MAX_FILE_SIZE) {
             throw new ServiceException("文章最多可输入" + BlogConsts.MAX_FILE_SIZE + "个字符。");
         }
-        if (content.getSlug() != null && content.getSlug().length() < 5) {
+        if (StringUtils.isNotBlank(content.getSlug()) && content.getSlug().length() < 5) {
             throw new ServiceException("路径太短了。");
         }
         if (getContent(content.getSlug()) != null) {
