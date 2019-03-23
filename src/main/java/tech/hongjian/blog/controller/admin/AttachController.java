@@ -3,6 +3,7 @@ package tech.hongjian.blog.controller.admin;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,9 @@ public class AttachController extends BaseController {
     @Autowired
     private SiteService siteService;
 
+    @Value("${web.upload-path}")
+    private String uploadPath;
+
     @GetMapping("")
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "1") int page,
@@ -88,7 +92,6 @@ public class AttachController extends BaseController {
                 String ftype = f.getContentType().contains("image") ? Types.IMAGE :
                         Types.FILE;
                 String filePath = BlogUtils.getFilePath(fkey);
-
                 try {
                     Files.write(Paths.get(filePath), f.getBytes());
                 } catch (IOException e) {

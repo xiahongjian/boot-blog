@@ -3,10 +3,12 @@ package tech.hongjian.blog.config;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tech.hongjian.blog.frm.annotation.Interceptor;
 
@@ -21,6 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private ApplicationContext appCtx;
 
+    @Value("${web.upload-path}")
+    private String uploadPath;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -40,6 +44,11 @@ public class WebConfig implements WebMvcConfigurer {
             registry.addInterceptor(definition.interceptor).addPathPatterns(definition.path);
             log.info("Add interceptor {}, path: {]", definition.interceptor.getClass().getName(), StringUtils.join(definition.path));
         });
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:" + uploadPath);
     }
 
     private static class InterceptorDefinition {

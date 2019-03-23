@@ -9,11 +9,11 @@
             <input type="hidden" name="coid" id="coid"/>
             <input type="hidden" name="cid" id="cid" value="${article.id}"/>
             <input name="author" maxlength="12" id="author" class="form-control input-control clearfix"
-                   placeholder="姓名 (*)" value="${login_user.username!}" required/>
+                   placeholder="姓名 (*)" value="${(login_user.username)!}" required/>
             <input type="email" name="mail" id="mail" class="form-control input-control clearfix" placeholder="邮箱 (*)"
-                   value="${login_user.email!}" required/>
+                   value="${(login_user.email)!}" required/>
             <input type="url" name="url" id="url" class="form-control input-control clearfix" placeholder="网址 (http://)"
-                   value="${login_user.homeUrl!}"/>
+                   value="${(login_user.homeUrl)!}"/>
             <textarea name="content" id="textarea" class="form-control" placeholder="基佬，留下你的评论." required minlength="5" maxlength="2000"></textarea>
             <button class="submit" id="misubmit">提交</button>
         </form>

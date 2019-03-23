@@ -47,6 +47,10 @@ public class BaseAccessInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
 
+        if (!uri.startsWith(BlogConsts.ADMIN_URI)) {
+            return true;
+        }
+
         // 已经安装
         if (BlogUtils.isInstalled()) {
             return isRedirect(httpServletRequest, httpServletResponse);
@@ -60,10 +64,11 @@ public class BaseAccessInterceptor extends HandlerInterceptorAdapter {
         // TODO FOR TEST
 //        WebUtil.setTestUser("admin");
 
+        String uri = request.getRequestURI();
         User user = WebUtil.getLoginUser();
         if (user != null)
             return true;
-        String uri = request.getRequestURI();
+
 
         if (uri.startsWith(BlogConsts.LOGIN_URI)) {
             return true;
