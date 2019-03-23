@@ -68,7 +68,7 @@ public class SiteService {
 
         optionService.saveOption("site_title", siteTitle);
         optionService.saveOption("site_url", siteUrl);
-        optionService.saveOption(Types.ATTACH_URL, siteUrl + "/static");
+        optionService.saveOption(Types.ATTACH_URL, siteUrl + "/upload");
         BlogConsts.OPTIONS = Environment.of(optionService.getOptions());
     }
 

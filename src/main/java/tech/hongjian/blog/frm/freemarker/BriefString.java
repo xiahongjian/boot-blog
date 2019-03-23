@@ -24,6 +24,6 @@ public class BriefString extends FMMethodBase {
         if (str.length() + 3 <= len) {
             return str;
         }
-        return str.substring(0, len) + "...";
+        return str.substring(0, len - 3) + "...";
     }
 }

@@ -7,7 +7,7 @@ spring:
     schema: classpath:db/schema-mysql.sql
     data: classpath:db/data.sql
 
-log:
+logging:
   level:
     tech.hongjian.blog.db.mapper: debug
 

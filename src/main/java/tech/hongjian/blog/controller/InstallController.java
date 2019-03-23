@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tech.hongjian.blog.consts.LogActions;
+import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Log;
 import tech.hongjian.blog.db.entity.User;
 import tech.hongjian.blog.service.LogService;
@@ -64,6 +65,7 @@ public class InstallController {
             user.setUsername(adminUser);
             user.setEmail(adminEmail);
             user.setPassword(adminPwd);
+            user.setGroupName(Types.GROUPS.ADMIN);
             siteService.initSite(user, siteTitle, siteUrl);
         } catch (Exception e) {
             log.warn("Failed to install.", e);

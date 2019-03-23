@@ -24,7 +24,7 @@
                     <a href="${siteUrl('/article/')}${comment.cid}#comments" target="_blank">${brief((comment.content!''), 10)}</a>
                 </td>
                 <td>${comment.author!}</td>
-                <td>${comment.created?str('yyyy-MM-dd HH:mm:ss')}</td>
+                <td>${comment.created?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td>${comment.mail}</td>
                 <td><a href="${comment.url!}" target="_blank">${comment.url!}</a></td>
                 <td>
@@ -67,7 +67,7 @@
             preConfirm: function (comment) {
                 return new Promise(function (resolve, reject) {
                     tale.post({
-                        url : '${request.contextPath}/admin/comments',
+                        url : '${request.contextPath}/admin/comment',
                         data: {coid: coid, content: comment},
                         success: function (result) {
                             if(result && result.success){
@@ -88,7 +88,7 @@
             title:'确定删除该评论吗?',
             then: function () {
                 tale.post({
-                    url : '${request.contextPath}/admin/comments/delete',
+                    url : '${request.contextPath}/admin/comment/delete',
                     data: {coid: coid},
                     success: function (result) {
                         if(result && result.success){
@@ -104,7 +104,7 @@
 
     function updateStatus(coid, status) {
         tale.post({
-            url : '${request.contextPath}/admin/comments/status',
+            url : '${request.contextPath}/admin/comment/status',
             data: {coid: coid, status: status},
             success: function (result) {
                 if(result && result.success){

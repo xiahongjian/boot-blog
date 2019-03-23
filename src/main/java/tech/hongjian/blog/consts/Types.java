@@ -29,6 +29,16 @@ public interface Types {
     String NEXT = "next";
     String PREV = "prev";
 
+    interface CMT_STATUE {
+        String APPROVED = "approved";
+        String NOT_AUDIT = "not_audit";
+    }
+
+    interface GROUPS {
+        String ADMIN = "admin";
+        String OTHERS = "others";
+    }
+
     /**
      * 附件存放的URL，默认为网站地址，如集成第三方则为第三方CDN域名
      */

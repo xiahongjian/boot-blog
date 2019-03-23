@@ -24,7 +24,7 @@
   <select id="getArticleComments" resultMap="BaseResultMap">
     select *
     from `comment`
-    where cid = #{cid} and
+    where cid = #{cid} and status='approved' and
     <choose>
       <when test="parent != null">
         parent = #{parent}

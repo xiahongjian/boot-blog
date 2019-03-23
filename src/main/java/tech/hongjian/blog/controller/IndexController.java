@@ -117,6 +117,8 @@ public class IndexController extends BaseController {
         comment.setParent(comment.getId());
         comment.setCreated(new Date());
         comment.setId(null);
+        comment.setAuthorId(getUid());
+        comment.setStatus(getUid() != null ? Types.CMT_STATUE.APPROVED : Types.CMT_STATUE.NOT_AUDIT);
 
         commentService.saveComment(comment);
         WebUtil.cookie("tale_remember_author", WebUtil.encode(comment.getAuthor()),

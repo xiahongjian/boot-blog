@@ -2,12 +2,14 @@ package tech.hongjian.blog.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.vdurmont.emoji.EmojiParser;
 import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tech.hongjian.blog.consts.BlogConsts;
 import tech.hongjian.blog.consts.Order;
 import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Content;
@@ -124,11 +126,22 @@ public class ContentService {
         if (StringUtils.isBlank(content.getContent())) {
             throw new ServiceException("文章能容不能为空。");
         }
+        if (content.getContent().length() > BlogConsts.MAX_FILE_SIZE) {
+            throw new ServiceException("文章最多可输入" + BlogConsts.MAX_FILE_SIZE + "个字符。");
+        }
+        if (content.getSlug() != null && content.getSlug().length() < 5) {
+            throw new ServiceException("路径太短了。");
+        }
+        if (getContent(content.getSlug()) != null) {
+            throw new ServiceException("路径已存在。");
+        }
         Date now = new Date();
         if (content.getCreated() == null) {
             content.setCreated(now);
         }
         content.setModified(now);
+        // 处理emoji
+        content.setContent(EmojiParser.parseToAliases(content.getContent()));
         contentMapper.insert(content);
         siteService.clearStatistics();
 
@@ -142,6 +155,7 @@ public class ContentService {
             throw new ServiceException("更新的文章不存在，请重试。");
         }
         content.setModified(new Date());
+        content.setContent(EmojiParser.parseToAliases(content.getContent()));
         contentMapper.updateByPrimaryKeySelective(content);
 
         handleMates(content);

@@ -48,13 +48,6 @@ public class CommentController extends BaseController {
     }
 
     @ResponseBody
-    @PostMapping(value = "status")
-    public RestResponse delete(Integer coid, String status) {
-        commentService.updateStatue(coid, status);
-        return RestResponse.ok();
-    }
-
-    @ResponseBody
     @PostMapping(value = "")
     public RestResponse reply(Integer coid, String content) {
 
@@ -83,6 +76,13 @@ public class CommentController extends BaseController {
         comment.setParent(coid);
         commentService.saveComment(comment);
         siteService.clearStatistics();
+        return RestResponse.ok();
+    }
+
+    @ResponseBody
+    @PostMapping(value = "status")
+    public RestResponse changeStatues(Integer coid, String status) {
+        commentService.updateStatue(coid, status);
         return RestResponse.ok();
     }
 }

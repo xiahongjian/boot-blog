@@ -64,8 +64,8 @@ CREATE TABLE `log` (
 );
 
 -- 文章分类
-DROP TABLE IF EXISTS `mate`;
-CREATE TABLE `mate` (
+DROP TABLE IF EXISTS `meta`;
+CREATE TABLE `meta` (
   id          INTEGER PRIMARY KEY AUTO_INCREMENT,
   name        VARCHAR(200) NOT NULL,
   slug        VARCHAR(200),
@@ -104,3 +104,6 @@ CREATE TABLE `user` (
   group_name  VARCHAR(16)
 );
 
+ALTER DATABASE blog CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+ALTER TABLE `content` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `comment` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
