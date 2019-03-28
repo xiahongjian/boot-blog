@@ -76,6 +76,10 @@ public class SiteService {
         return commentService.selectPageOrderBy("created", Order.DESC, limit);
     }
 
+    public PageInfo<Comment> recentComments(boolean approved, int limit) {
+        return commentService.selectPageOrderBy(true, "created", Order.DESC, limit);
+    }
+
     public List<Log> recentLogs(int limit) {
         return logService.selectOrderBy("created", Order.DESC, limit);
     }
@@ -145,6 +149,7 @@ public class SiteService {
 
 
     public PageInfo<Content> recentArticles(int limit) {
-        return contentService.selectPageByParams(Types.ARTICLE, Types.PUBLISH, null,"id", Order.DESC, 1, limit);
+        return contentService.selectPageByParams(Types.ARTICLE, Types.PUBLISH, null,
+                "id", Order.DESC, 1, limit);
     }
 }

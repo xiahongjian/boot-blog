@@ -50,4 +50,13 @@
     </choose>
     and (status='approved' <if test="uid != null"> or exists (select * from `user` where id=#{uid} and group_name='admin')</if>)
   </select>
+
+  <select id="selectApprovedOrderBy" resultMap="BaseResultMap">
+    select *
+    from `comment`
+    <if test="approved">
+    where status='approved'
+    </if>
+    order by ${param} ${order}
+  </select>
 </mapper>

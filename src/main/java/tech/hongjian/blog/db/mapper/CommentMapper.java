@@ -13,6 +13,9 @@ public interface CommentMapper extends Mapper<Comment> {
     List<Comment> selectOrderBy(@Param("param") String param,
                                    @Param("order") String order);
 
+    List<Comment> selectApprovedOrderBy(boolean approved, @Param("param") String param,
+                                        @Param("order") String order);
+
     @Select("select * from `Comment` where author_id != #{uid} or author_id is null")
     List<Comment> selectNotSelf(Integer uid);
 

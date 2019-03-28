@@ -15,6 +15,6 @@ public class RecentComments extends FMMethodBase {
     @Override
     public Object exec(List arguments) throws TemplateModelException {
         Integer limit = toInt(arguments.get(0));
-        return siteService.recentComments(limit);
+        return siteService.recentComments(true, limit);
     }
 }

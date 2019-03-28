@@ -29,6 +29,11 @@ public class CommentService {
         return commentMapper.selectOrderBy(prop, order.name());
     }
 
+    public List<Comment> selectAllOrderBy(boolean approved, @NonNull String prop,
+                                          @NonNull Order order) {
+        return commentMapper.selectApprovedOrderBy(approved, prop, order.name());
+    }
+
     public List<Comment> selectOrderBy(@NonNull String prop, @NonNull Order order,
                                        int limit) {
         return PageHelper.startPage(1, BlogUtils.adjustPageSize(limit), false)
@@ -38,6 +43,11 @@ public class CommentService {
     public PageInfo<Comment> selectPageOrderBy(@NonNull String prop,
                                                @NonNull Order order, int limit) {
         return PageHelper.startPage(1, limit).doSelectPageInfo(() -> selectAllOrderBy(prop, order));
+    }
+
+    public PageInfo<Comment> selectPageOrderBy(boolean approved, @NonNull String prop,
+                                               @NonNull Order order, int limit) {
+        return PageHelper.startPage(1, limit).doSelectPageInfo(() -> commentMapper.selectApprovedOrderBy(true, prop, order.name()));
     }
 
     public long count() {
@@ -96,7 +106,8 @@ public class CommentService {
     }
 
 
-    public PageInfo<CommentWithChildren> getComments(@NonNull Integer cid, Integer uid, int page, int limit) {
+    public PageInfo<CommentWithChildren> getComments(@NonNull Integer cid, Integer uid,
+                                                     int page, int limit) {
         PageInfo<Comment> comments =
                 PageHelper.startPage(page, limit).doSelectPageInfo(() -> commentMapper.getArticleCommentsByUser(cid, uid, null));
 
@@ -122,7 +133,8 @@ public class CommentService {
         return pageInfo;
     }
 
-    private void getChildren(List<Comment> children, Integer cid, Integer uid, Integer parent) {
+    private void getChildren(List<Comment> children, Integer cid, Integer uid,
+                             Integer parent) {
         List<Comment> comments = commentMapper.getArticleCommentsByUser(cid, uid, parent);
         comments.forEach(c -> {
             children.addAll(comments);
