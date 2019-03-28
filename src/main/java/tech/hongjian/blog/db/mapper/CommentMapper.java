@@ -18,4 +18,6 @@ public interface CommentMapper extends Mapper<Comment> {
 
 
     List<Comment> getArticleComments(Integer cid, Integer parent);
+
+    List<Comment> getArticleCommentsByUser(Integer cid, Integer uid, Integer parent);
 }

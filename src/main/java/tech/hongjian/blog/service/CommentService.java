@@ -96,16 +96,16 @@ public class CommentService {
     }
 
 
-    public PageInfo<CommentWithChildren> getComments(@NonNull Integer cid, int page, int limit) {
+    public PageInfo<CommentWithChildren> getComments(@NonNull Integer cid, Integer uid, int page, int limit) {
         PageInfo<Comment> comments =
-                PageHelper.startPage(page, limit).doSelectPageInfo(() -> commentMapper.getArticleComments(cid, null));
+                PageHelper.startPage(page, limit).doSelectPageInfo(() -> commentMapper.getArticleCommentsByUser(cid, uid, null));
 
 
         List<CommentWithChildren> result = new ArrayList<>();
         comments.getList().forEach(c -> {
             CommentWithChildren child = new CommentWithChildren(c);
             List<Comment> children = new ArrayList<>();
-            getChildren(children, cid, c.getId());
+            getChildren(children, cid, uid, c.getId());
             child.setChildren(children);
             child.setLevel(children.isEmpty() ? 0 : 1);
             result.add(child);
@@ -122,12 +122,12 @@ public class CommentService {
         return pageInfo;
     }
 
-    private void getChildren(List<Comment> children, Integer cid, Integer parent) {
-        List<Comment> comments = commentMapper.getArticleComments(cid, parent);
+    private void getChildren(List<Comment> children, Integer cid, Integer uid, Integer parent) {
+        List<Comment> comments = commentMapper.getArticleCommentsByUser(cid, uid, parent);
         comments.forEach(c -> {
             children.addAll(comments);
             comments.forEach(e -> {
-                getChildren(children, cid, parent);
+                getChildren(children, cid, uid, parent);
             });
         });
     }

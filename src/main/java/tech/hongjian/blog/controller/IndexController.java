@@ -90,7 +90,7 @@ public class IndexController extends BaseController {
         }
 
         PageInfo<CommentWithChildren> comments =
-                commentService.getComments(content.getId(), cp, 10);
+                commentService.getComments(content.getId(), getUid(), cp, 10);
 
         model.addAttribute("article", content);
         model.addAttribute("is_post", true);

@@ -35,4 +35,19 @@
     </choose>
     order by created
   </select>
+
+  <select id="getArticleCommentsByUser" resultMap="BaseResultMap">
+    select *
+    from `comment`
+    where cid = #{cid} and
+    <choose>
+      <when test="parent != null">
+        parent = #{parent}
+      </when>
+      <when test="parent == null">
+        parent is null
+      </when>
+    </choose>
+    and (status='approved' <if test="uid != null"> or exists (select * from `user` where id=#{uid} and group_name='admin')</if>)
+  </select>
 </mapper>
