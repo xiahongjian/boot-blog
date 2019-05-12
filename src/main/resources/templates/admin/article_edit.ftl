@@ -1,7 +1,6 @@
 <#assign active='publish', title='保存文章' >
 <#include "header.ftl" >
 <link href="${request.contextPath}${request.contextPath}/static/admin/plugins/tagsinput/jquery.tagsinput.css" rel="stylesheet">
-<link href="${request.contextPath}${request.contextPath}/static/admin/plugins/select2/dist/css/select2-bootstrap.css" rel="stylesheet">
 <link href="${request.contextPath}${request.contextPath}/static/admin/plugins/toggles/toggles.css" rel="stylesheet">
 <@com.resource_loader type="article_edit_head" />
 <style rel="stylesheet">
