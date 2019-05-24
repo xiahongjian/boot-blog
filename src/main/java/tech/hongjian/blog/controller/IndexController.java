@@ -187,8 +187,9 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping(value = "logout")
-    public void logout() {
+    public String logout() {
         WebUtil.logout();
+        return "redirect:/";
     }
 
     private String title(int pn) {

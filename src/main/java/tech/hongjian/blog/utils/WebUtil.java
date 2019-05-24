@@ -23,6 +23,8 @@ public class WebUtil {
     public static final String HEADER_HTTP_CLIENT_IP = "HTTP_CLIENT_IP";
     public static final String HEADER_HTTP_X_FORWARDED_FOR = "HTTP_X_FORWARDED_FOR";
     public static final String UNKNOWN_HOST = "unknown";
+    public static final String COOKIE_USR = "user";
+    public static final String COOKIE_PWD = "password";
 
 
 
@@ -89,6 +91,8 @@ public class WebUtil {
     public static void logout() {
         HttpSession session = getRequest().getSession();
         session.removeAttribute(BlogConsts.LOGIN_SESSION_KEY);
+        cookie(WebUtil.COOKIE_USR, "", 0);
+        cookie(WebUtil.COOKIE_PWD, "", 0);
     }
 
     public static User getLoginUser() {

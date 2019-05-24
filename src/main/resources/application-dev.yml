@@ -9,7 +9,7 @@ spring:
 
 logging:
   level:
-    tech.hongjian.blog.db.mapper: debug
+    tech.hongjian.blog.db.mapper: info
 
 # mapper
 mapper:

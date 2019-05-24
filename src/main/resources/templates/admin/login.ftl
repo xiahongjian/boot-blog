@@ -65,14 +65,14 @@
 
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class=" input-lg input-border" name="username" type="text" required=""
+                        <input class=" input-lg input-border" name="username" value="${user!}" type="text" required=""
                                placeholder="请输入账号 :)">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class=" input-lg input-border" name="password" type="password" required=""
+                        <input class=" input-lg input-border" name="password" value="${password!}" type="password" required=""
                                placeholder="请输入密码">
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <div class="col-xs-12">
                         <div class="checkbox checkbox-danger">
-                            <input id="checkbox-signup" name="remeberMe" type="checkbox">
+                            <input id="checkbox-signup" name="rememberMe" type="checkbox">
                             <label for="checkbox-signup">记住我</label>
                         </div>
                     </div>

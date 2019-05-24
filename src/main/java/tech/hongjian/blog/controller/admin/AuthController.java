@@ -1,7 +1,9 @@
 package tech.hongjian.blog.controller.admin;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,15 @@ public class AuthController extends BaseController {
     private CacheManager cache;
 
     @GetMapping("login")
-    public String login() {
+    public String login(Model model) {
+        String user = WebUtil.getCookieValue(WebUtil.COOKIE_USR);
+        String password = WebUtil.getCookieValue(WebUtil.COOKIE_PWD);
+        if (StringUtils.isNoneBlank(user)) {
+            model.addAttribute("user", user);
+        }
+        if (StringUtils.isNoneBlank(password)) {
+            model.addAttribute("password", password);
+        }
         return "/admin/login";
     }
 
@@ -54,6 +64,10 @@ public class AuthController extends BaseController {
         logService.save(new Log(LogActions.LOGIN, "ok", WebUtil.getUid(),
                 WebUtil.getRealIp()));
         cache.hdel("login_error_count", ip);
+        if ("on".equals(rememberMe)) {
+            WebUtil.cookie(WebUtil.COOKIE_USR, username, 7 * 24 * 60 * 60);
+            WebUtil.cookie(WebUtil.COOKIE_PWD, password, 7 * 24 * 60 * 60);
+        }
         return RestResponse.ok();
     }
 }
