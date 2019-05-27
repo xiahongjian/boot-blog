@@ -8,7 +8,7 @@
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
+                <th width="10%">ID</th>
                 <th width="8%">动作</th>
                 <th>内容</th>
                 <th width="8%">作者</th>
