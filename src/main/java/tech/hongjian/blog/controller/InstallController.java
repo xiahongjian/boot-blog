@@ -10,6 +10,7 @@ import tech.hongjian.blog.consts.LogActions;
 import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Log;
 import tech.hongjian.blog.db.entity.User;
+import tech.hongjian.blog.frm.annotation.AccessLog;
 import tech.hongjian.blog.service.LogService;
 import tech.hongjian.blog.service.SiteService;
 import tech.hongjian.blog.utils.BlogUtils;
@@ -30,6 +31,7 @@ public class InstallController {
     @Autowired
     private LogService logService;
 
+    @AccessLog
     @GetMapping({"", "/"})
     public String install(Model model) {
         model.addAttribute("isInstalled", BlogUtils.isInstalled());

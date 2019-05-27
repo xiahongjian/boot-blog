@@ -15,6 +15,7 @@ import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Comment;
 import tech.hongjian.blog.db.entity.Content;
 import tech.hongjian.blog.db.entity.dto.CommentWithChildren;
+import tech.hongjian.blog.frm.annotation.AccessLog;
 import tech.hongjian.blog.service.*;
 import tech.hongjian.blog.utils.BlogUtils;
 import tech.hongjian.blog.utils.RestResponse;
@@ -65,6 +66,7 @@ public class IndexController extends BaseController {
     /**
      * 首页分页
      */
+    @AccessLog
     @GetMapping(value = {"page/{page}"})
     public String index(Model model, @RequestParam(defaultValue = "1") int page,
                         @RequestParam(defaultValue = "12") int limit) {
@@ -81,6 +83,7 @@ public class IndexController extends BaseController {
     /**
      * 文章页
      */
+    @AccessLog
     @GetMapping(value = {"article/{id}"})
     public String post(Model model, @PathVariable String id,
                        @RequestParam(defaultValue = "1") Integer cp) {
@@ -149,6 +152,7 @@ public class IndexController extends BaseController {
         return search(model, keyword, 1, limit);
     }
 
+    @AccessLog
     @GetMapping(value = {"search/{keyword}/{page}"})
     public String search(Model model, @PathVariable("keyword") String keyword,
                          @PathVariable("page") int page, @RequestParam(defaultValue =

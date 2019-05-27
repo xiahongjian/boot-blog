@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tech.hongjian.blog.consts.BlogConsts;
 
@@ -11,6 +12,7 @@ import tech.hongjian.blog.consts.BlogConsts;
 @EnableTransactionManagement
 @tk.mybatis.spring.annotation.MapperScan(BlogConsts.MAPPER_PACKAGE)
 @SpringBootApplication
+@EnableAspectJAutoProxy
 public class BlogApplication extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {

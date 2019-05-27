@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Content;
 import tech.hongjian.blog.db.entity.Meta;
+import tech.hongjian.blog.frm.annotation.AccessLog;
 import tech.hongjian.blog.service.ContentService;
 import tech.hongjian.blog.service.MetaService;
 
@@ -33,6 +34,7 @@ public class CategoryController extends BaseController {
     /**
      * 某个分类详情页分页
      */
+    @AccessLog
     @GetMapping(value = {"category/{keyword}/{page}"})
     public String categories(Model model, @PathVariable("keyword") String keyword,
                              @PathVariable("page") int page,
@@ -65,6 +67,7 @@ public class CategoryController extends BaseController {
     /**
      * 标签下文章分页
      */
+    @AccessLog
     @GetMapping(value = {"tag/{name}/{page}"})
     public String tags(Model model, @PathVariable("name") String name, @PathVariable(
             "page") int page, @RequestParam(defaultValue = "12") int limit) {
