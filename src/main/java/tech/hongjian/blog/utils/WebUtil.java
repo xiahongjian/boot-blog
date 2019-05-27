@@ -172,6 +172,7 @@ public class WebUtil {
     public static void cookie(String name, String value, int expiry) {
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(expiry);
+        cookie.setPath("/");
         WebUtil.getResponse().addCookie(cookie);
     }
 }

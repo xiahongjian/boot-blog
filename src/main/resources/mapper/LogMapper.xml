@@ -12,4 +12,33 @@
     <result column="ip" property="ip" jdbcType="VARCHAR" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <sql id="allColumns">
+    `id`, `action`, `data`, `author_id`, `ip`, `created`
+  </sql>
+
+  <select id="selectByParams" resultMap="BaseResultMap">
+    select
+    <include refid="allColumns" />
+    from `log`
+    <where>
+      <if test="action != null">
+        and `action` = #{action}
+      </if>
+      <if test="keyword != null">
+        and `data` like #{keyword}
+      </if>
+      <if test="author != null">
+        and `author_id` = #{author}
+      </if>
+      <if test="from != null">
+        and `created` &gt;= #{from}
+      </if>
+      <if test="to != null">
+        and `created` &lt;= #{to}
+      </if>
+    </where>
+    order  by `id` desc
+  </select>
+
 </mapper>

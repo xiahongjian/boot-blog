@@ -100,6 +100,10 @@
                     <li <#if (active=='setting')>class="active"</#if>>
                         <a href="${request.contextPath}/admin/setting" class="waves-effect <#if (active=='setting')>active</#if>"><i class="fa fa-gear" aria-hidden="true"></i><span> 系统设置 </span></a>
                     </li>
+
+                    <li <#if (active=='log')>class="active"</#if>>
+                        <a href="${request.contextPath}/admin/log" class="waves-effect <#if (active=='log')>active</#if>"><i class="fa fa-filter" aria-hidden="true"></i><span> 系统日志 </span></a>
+                    </li>
                     <#if plugin_menus??>
                     <#list plugin_menus as item>
                     <li <#if (active==item.slug)>class="active"</#if>>

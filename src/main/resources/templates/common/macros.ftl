@@ -19,7 +19,7 @@
     <ul class="pagination m-b-5 pull-right">
         <#if pageInfo.hasPreviousPage>
             <li>
-                <a href="?page=${pageInfo.prevPage}" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;上一页</a>
+                <a href="?page=${pageInfo.prePage}" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;上一页</a>
             </li>
         </#if>
 
