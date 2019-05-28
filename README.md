@@ -1,7 +1,10 @@
 # BootBlog
 
+[![Build Status](https://travis-ci.org/xiahongjian/boot-blog.svg?branch=master)](https://travis-ci.org/xiahongjian/boot-blog) 
+![GitHub](https://img.shields.io/github/license/xiahongjian/boot-blog.svg)
 
-一个使用Spring Boot + MyBatis + FreeMarker实现的博客系统。
+
+一个使用Spring Boot + MyBatis + FreeMarker实现的博客系统。  
 演示网址: [https://blog.hongjian.tech](https://blog.hongjian.tech/)
 
 
