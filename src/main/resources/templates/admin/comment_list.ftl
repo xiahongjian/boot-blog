@@ -37,7 +37,7 @@
                 <td>
                     <a href="javascript:void(0)" onclick="reply('${comment.id}');" class="btn btn-primary btn-sm waves-effect waves-light m-b-5"><i class="fa fa-edit"></i> <span>回复</span></a>
                     <#if (comment.status == 'not_audit')>
-                    <a href="javascript:void(0)" onclick="updateStatus('${comment.id}', 'approved');" class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
+                    <a href="javascript:void(0)" onclick="updateStatus('${comment.id}', 'approved');" class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
                             class="fa fa-trash-o"></i> <span>通过</span></a>
                     </#if>
                     <a href="javascript:void(0)" onclick="delComment(${comment.id});" class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i class="fa fa-trash-o"></i> <span>删除</span></a>
