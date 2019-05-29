@@ -34,8 +34,8 @@
             <img src="${theme('/img/logo.png')}" alt="${siteOpt('site_title')}"/>
         </a>
         <div class="navbar-menu">
-            <#--
             <a href="${siteUrl('/archives')}">归档</a>
+            <#--
             <a href="${siteUrl('/links')}">友链</a>
             <a href="${siteUrl('/about')}">关于</a>
             -->
@@ -53,8 +53,10 @@
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
                 <li><a href="${siteUrl('/archives')}">归档</a></li>
+                <#--
                 <li><a href="${siteUrl('/links')}">友链</a></li>
                 <li><a href="${siteUrl('/about')}">关于</a></li>
+                -->
             </ul>
         </div>
     </div>

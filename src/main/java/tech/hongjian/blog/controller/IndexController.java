@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import tech.hongjian.blog.consts.BlogConsts;
 import tech.hongjian.blog.consts.Order;
 import tech.hongjian.blog.consts.Types;
+import tech.hongjian.blog.db.entity.Archive;
 import tech.hongjian.blog.db.entity.Comment;
 import tech.hongjian.blog.db.entity.Content;
 import tech.hongjian.blog.db.entity.dto.CommentWithChildren;
@@ -171,6 +172,7 @@ public class IndexController extends BaseController {
         return render("page-category");
     }
 
+    @AccessLog
     @ResponseBody
     @GetMapping(value = {"feed", "feed.xml", "atom.xml"}, produces =
             MediaType.APPLICATION_XML_VALUE)
@@ -188,6 +190,14 @@ public class IndexController extends BaseController {
             log.error("生成 rss 失败", e);
         }
         return "";
+    }
+
+    @GetMapping(value = {"archives"})
+    public String archives(Model model) {
+        List<Archive> archives = siteService.getArchives();
+        model.addAttribute("archives", archives);
+        model.addAttribute("title", "文章归档");
+        return render("archives");
     }
 
     @RequestMapping(value = "logout")

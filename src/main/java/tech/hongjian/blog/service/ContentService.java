@@ -12,11 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 import tech.hongjian.blog.consts.BlogConsts;
 import tech.hongjian.blog.consts.Order;
 import tech.hongjian.blog.consts.Types;
+import tech.hongjian.blog.db.entity.Archive;
 import tech.hongjian.blog.db.entity.Content;
 import tech.hongjian.blog.db.mapper.ContentMapper;
 import tech.hongjian.blog.frm.exception.ServiceException;
 import tech.hongjian.blog.utils.BlogUtils;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -62,22 +67,28 @@ public class ContentService {
     }
 
     public List<Content> selectByParams(String type, String status, Boolean allowFeed) {
-        return contentMapper.selectByParams(type, status, null, allowFeed, "id", Order.DESC.name());
+        return contentMapper.selectByParams(type, status, null, allowFeed, "id",
+                Order.DESC.name());
     }
 
     public PageInfo<Content> selectPageByParams(String type, String status,
-                                        @NonNull String prop, @NonNull Order order,
-                                        int page, int count) {
+                                                @NonNull String prop,
+                                                @NonNull Order order,
+                                                int page, int count) {
         return PageHelper.startPage(page, BlogUtils.adjustPageSize(count))
-                .doSelectPageInfo(() -> contentMapper.selectByParams(type, status, null, null,
+                .doSelectPageInfo(() -> contentMapper.selectByParams(type, status, null
+                        , null,
                         prop, order.name()));
     }
 
-    public PageInfo<Content> selectPageByParams(String type, String status, String keyword,
-                                                @NonNull String prop, @NonNull Order order,
+    public PageInfo<Content> selectPageByParams(String type, String status,
+                                                String keyword,
+                                                @NonNull String prop,
+                                                @NonNull Order order,
                                                 int page, int count) {
         return PageHelper.startPage(page, BlogUtils.adjustPageSize(count))
-                .doSelectPageInfo(() -> contentMapper.selectByParams(type, status, keyword, null,
+                .doSelectPageInfo(() -> contentMapper.selectByParams(type, status,
+                        keyword, null,
                         prop, order.name()));
     }
 
@@ -101,7 +112,8 @@ public class ContentService {
     }
 
     public long countByParam(String type, String status) {
-        return PageHelper.count(() -> contentMapper.selectByParams(type, status, null, null,
+        return PageHelper.count(() -> contentMapper.selectByParams(type, status, null,
+                null,
                 "id", Order.ASC.name()));
     }
 
@@ -187,5 +199,27 @@ public class ContentService {
 
     public PageInfo<Content> getArticles(Integer metaId, int page, int limit) {
         return PageHelper.startPage(page, limit).doSelectPageInfo(() -> contentMapper.selectArticles(metaId));
+    }
+
+    public List<Content> getArticles(Date from, Date to) {
+        return contentMapper.selectArticlesByCreated(from, to);
+    }
+
+    public List<Archive> getArchives() {
+        List<Archive> archives = contentMapper.selectArchives();
+        archives.forEach(this::getArchiveArticles);
+        return archives;
+    }
+
+    private void getArchiveArticles(Archive archive) {
+        LocalDateTime currentMonthFirstDay =
+                LocalDateTime.parse(archive.getDateStr() + "01 00:00:00",
+                        DateTimeFormatter.ofPattern("yyyy年MM月dd HH:mm:ss"));
+        LocalDateTime currentMonthLastDay = currentMonthFirstDay.plusMonths(1).minus(1,
+                ChronoUnit.SECONDS);
+        ZoneId sysZone = ZoneId.systemDefault();
+
+        archive.setArticles(getArticles(Date.from(currentMonthFirstDay.atZone(sysZone).toInstant()),
+                Date.from(currentMonthLastDay.atZone(sysZone).toInstant())));
     }
 }

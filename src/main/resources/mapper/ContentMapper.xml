@@ -25,6 +25,11 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 
+  <resultMap id="ArchiveResultMap" type="tech.hongjian.blog.db.entity.Archive">
+    <result column="date_str" property="dateStr" jdbcType="VARCHAR"/>
+  </resultMap>
+
+
   <sql id="allColumns">
     `id`, `title`, `slug`, `thumb_img`, `created`,
     `modified`, `author_id`, `type`, `status`, `fmt_type`,
@@ -89,4 +94,19 @@
     from `content` a left join `relationship` b on a.id = b.cid
     where b.mid = #{metaId} and a.status='publish' and a.type='post'
   </select>
+
+  <select id="selectArchives" resultMap="ArchiveResultMap">
+    select
+    distinct DATE_FORMAT(`created`, '%Y年%m月') as date_str
+    from `content` as c
+    where `type`='post' and `status`='publish'
+  </select>
+
+  <select id="selectArticlesByCreated" resultMap="BaseResultMap">
+    select
+    <include refid="allColumns"/>
+    from `content`
+    where `type`='post' and `status`='publish' and `created` &gt;= #{from} and `created` &lt;= #{to}
+  </select>
+
 </mapper>

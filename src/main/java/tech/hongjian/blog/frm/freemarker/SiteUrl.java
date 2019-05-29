@@ -1,10 +1,10 @@
 package tech.hongjian.blog.frm.freemarker;
 
 import freemarker.template.TemplateModelException;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import tech.hongjian.blog.frm.annotation.FMMethod;
 import tech.hongjian.blog.service.OptionService;
+import tech.hongjian.blog.utils.WebUtil;
 
 import java.util.List;
 
@@ -20,20 +20,10 @@ public class SiteUrl extends FMMethodBase {
             String url = siteUrl;
             for (Object obj : arguments) {
                 String path = toStr(obj);
-                concat(siteUrl, path);
+                url = WebUtil.urlContact(url, path);
             }
             return url;
         }
         return siteUrl;
-    }
-
-    private String concat(String url, String path) {
-        if (StringUtils.isBlank(url)) {
-            return path;
-        }
-        if (StringUtils.isBlank(path)) {
-            return url;
-        }
-        return url + (url.endsWith("/") & !path.startsWith("/") ? "" : "/") + path;
     }
 }

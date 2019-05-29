@@ -9,10 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tech.hongjian.blog.consts.BlogConsts;
 import tech.hongjian.blog.consts.Order;
 import tech.hongjian.blog.consts.Types;
-import tech.hongjian.blog.db.entity.Comment;
-import tech.hongjian.blog.db.entity.Content;
-import tech.hongjian.blog.db.entity.Log;
-import tech.hongjian.blog.db.entity.User;
+import tech.hongjian.blog.db.entity.*;
 import tech.hongjian.blog.model.Statistics;
 import tech.hongjian.blog.utils.BlogUtils;
 import tech.hongjian.blog.utils.Environment;
@@ -151,5 +148,9 @@ public class SiteService {
     public PageInfo<Content> recentArticles(int limit) {
         return contentService.selectPageByParams(Types.ARTICLE, Types.PUBLISH, null,
                 "id", Order.DESC, 1, limit);
+    }
+
+    public List<Archive> getArchives() {
+        return contentService.getArchives();
     }
 }

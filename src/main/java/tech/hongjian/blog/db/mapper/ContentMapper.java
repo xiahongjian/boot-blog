@@ -2,6 +2,7 @@ package tech.hongjian.blog.db.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import tech.hongjian.blog.db.entity.Archive;
 import tech.hongjian.blog.db.entity.Content;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -33,4 +34,8 @@ public interface ContentMapper extends Mapper<Content> {
     Content selectNext(Date created);
 
     List<Content> selectArticles(Integer metaId);
+
+    List<Archive> selectArchives();
+
+    List<Content> selectArticlesByCreated(Date from, Date to);
 }
