@@ -59,6 +59,7 @@ public class IndexController extends BaseController {
     /**
      * 首页
      */
+    @AccessLog
     @GetMapping({"", "/"})
     public String index(Model model, @RequestParam(defaultValue = "12") int limit) {
         return index(model, 1, limit);
@@ -141,12 +142,14 @@ public class IndexController extends BaseController {
         return RestResponse.ok();
     }
 
+    @AccessLog
     @GetMapping(value = {"search/{keyword}"})
     public String search(Model model, @PathVariable("keyword") String keyword,
                          @RequestParam(defaultValue = "12") int limit) {
         return search(model, keyword, 1, limit);
     }
 
+    @AccessLog
     @GetMapping(value = {"search"})
     public String search(Model model, @RequestParam(defaultValue = "12") int limit) {
         String keyword = WebUtil.getRequest().getParameter("s");
@@ -192,6 +195,7 @@ public class IndexController extends BaseController {
         return "";
     }
 
+    @AccessLog
     @GetMapping(value = {"archives"})
     public String archives(Model model) {
         List<Archive> archives = siteService.getArchives();

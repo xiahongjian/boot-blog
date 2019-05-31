@@ -25,6 +25,7 @@ public class CategoryController extends BaseController {
     /**
      * 某个分类详情页
      */
+    @AccessLog
     @GetMapping(value = {"category/{keyword}"})
     public String categories(Model model, @PathVariable String keyword,
                              @RequestParam(defaultValue = "12") int limit) {
@@ -58,6 +59,7 @@ public class CategoryController extends BaseController {
     }
 
 
+    @AccessLog
     @GetMapping(value = {"tag/{name}"})
     public String tagPage(Model model, @PathVariable String name,
                           @RequestParam(defaultValue = "12") int limit) {
