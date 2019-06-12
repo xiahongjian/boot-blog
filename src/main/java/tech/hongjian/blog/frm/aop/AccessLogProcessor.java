@@ -1,12 +1,8 @@
 package tech.hongjian.blog.frm.aop;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,16 +10,18 @@ import org.aspectj.lang.reflect.CodeSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import tech.hongjian.blog.consts.LogActions;
 import tech.hongjian.blog.db.entity.Log;
 import tech.hongjian.blog.frm.annotation.AccessLog;
 import tech.hongjian.blog.service.LogService;
 import tech.hongjian.blog.utils.JSONUtil;
 import tech.hongjian.blog.utils.WebUtil;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author xiahongjian
@@ -54,7 +52,7 @@ public class AccessLogProcessor {
 			}
 			params.put(parameters[i], args[i]);
 		}
-		logService.save(new Log(LogActions.VISIT, JSONUtil.toJson(new RequestLog(url, params, request.getMethod())),
+		logService.save(new Log(LogActions.VISIT.name(), JSONUtil.toJson(new RequestLog(url, params, request.getMethod())),
 				author, ip));
 	}
 

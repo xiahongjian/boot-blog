@@ -133,7 +133,7 @@ public class AttachController extends BaseController {
             return RestResponse.fail("删除附件失败。");
         }
         attachService.delete(id);
-        logService.save(new Log(LogActions.DEL_ARTICLE, fkey, getUid(),
+        logService.save(new Log(LogActions.DEL_ARTICLE.name(), fkey, getUid(),
                 WebUtil.getRealIp()
         ));
         return RestResponse.ok();

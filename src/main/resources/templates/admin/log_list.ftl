@@ -11,9 +11,9 @@
                     <span class="input-group-addon">动作</span>
                     <select class="form-control" name="action">
                         <option value=""></option>
-                        <#if actions?? && actions?size &gt; 0>
-                            <#list actions as a>
-                                <option value="${a}" <#if action?? && a == action>selected</#if>>${a}</option>
+                        <#if actionsMap?? && actionsMap?size &gt; 0>
+                            <#list actionsMap?keys as k>
+                                <option value="${k}" <#if action?? && k == action>selected</#if>>${actionsMap[k]}</option>
                             </#list>
                         </#if>
                     </select>
@@ -68,7 +68,7 @@
                 <#list logs.list as log>
                     <tr cid="${log.id}">
                         <td>${log.id}</td>
-                        <td>${log.action!}</td>
+                        <td><#if log.action??><#if actionsMap?? && actionsMap[log.action]??>${actionsMap[log.action]}<#else>${log.action!}</#if></#if></td>
                         <td>${log.data!}</td>
                         <td>${log.authorId!'-'}</td>
                         <td>${log.ip!'-'}</td>

@@ -75,7 +75,7 @@ public class IndexController extends BaseController {
             }
             optionService.saveOption(key, value[0]);
         });
-        logService.save(new Log(LogActions.SYS_SETTING, JSONUtil.toJson(paramMap),
+        logService.save(new Log(LogActions.SYS_SETTING.name(), JSONUtil.toJson(paramMap),
                 WebUtil.getUid(), WebUtil.getRealIp()));
         return RestResponse.ok();
     }
@@ -97,7 +97,7 @@ public class IndexController extends BaseController {
         params.put("block_ips", blockIps);
         params.put("plugin_name", pluginName);
         params.put("allow_install", allowInstall);
-        logService.save(new Log(LogActions.SYS_SETTING, JSONUtil.toJson(params),
+        logService.save(new Log(LogActions.SYS_SETTING.name(), JSONUtil.toJson(params),
                 WebUtil.getUid(), WebUtil.getRealIp()));
         return RestResponse.ok();
     }

@@ -51,7 +51,7 @@ public class ArticleController extends BaseController {
     public RestResponse delete(int id) {
         contentService.delete(id);
         siteService.clearStatistics();
-        logService.save(new Log(LogActions.DEL_ARTICLE, "id:" + id, getUid(),
+        logService.save(new Log(LogActions.DEL_ARTICLE.name(), "id:" + id, getUid(),
                 WebUtil.getRealIp()));
         return RestResponse.ok();
     }

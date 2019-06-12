@@ -56,7 +56,7 @@ public class LogController extends BaseController {
 
     private void setQueryParameters(Model model, String action, String keyword,
                                     Integer author, String from, String to) {
-        model.addAttribute("actions", LogActions.getAllActions());
+        model.addAttribute("actionsMap", LogActions.getActionMap());
         if (StringUtils.isNoneBlank(action)) {
             model.addAttribute("action", action);
         }

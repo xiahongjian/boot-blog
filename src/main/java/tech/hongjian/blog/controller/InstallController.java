@@ -73,7 +73,7 @@ public class InstallController {
             log.warn("Failed to install.", e);
             return RestResponse.fail("安装失败");
         }
-        logService.save(new Log(LogActions.INIT_SITE,
+        logService.save(new Log(LogActions.INIT_SITE.name(),
                 JSONUtil.toJson(request.getParameterMap()), null, WebUtil.getRealIp()));
         return RestResponse.ok();
     }

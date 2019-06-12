@@ -87,7 +87,7 @@ public class PageController extends BaseController {
     @PostMapping("delete")
     public RestResponse delete(@RequestParam Integer id) {
         contentService.delete(id);
-        logService.save(new Log(LogActions.DEL_PAGE, id + "", getUid(),
+        logService.save(new Log(LogActions.DEL_PAGE.name(), id + "", getUid(),
                 WebUtil.getRealIp()));
         return RestResponse.ok();
     }

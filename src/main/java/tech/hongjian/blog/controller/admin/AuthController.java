@@ -57,11 +57,11 @@ public class AuthController extends BaseController {
         } catch (ServiceException e) {
             count = count == null ? 1 : count++;
             cache.hset("login_error_count", ip, count, 10 * 60);
-            logService.save(new Log(LogActions.LOGIN, e.getMessage(), null,
+            logService.save(new Log(LogActions.LOGIN.name(), e.getMessage(), null,
                     WebUtil.getRealIp()));
             return RestResponse.fail(e.getMessage());
         }
-        logService.save(new Log(LogActions.LOGIN, "ok", WebUtil.getUid(),
+        logService.save(new Log(LogActions.LOGIN.name(), "ok", WebUtil.getUid(),
                 WebUtil.getRealIp()));
         cache.hdel("login_error_count", ip);
         if ("on".equals(rememberMe)) {
