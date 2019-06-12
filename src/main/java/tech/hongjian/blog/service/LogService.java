@@ -3,6 +3,7 @@ package tech.hongjian.blog.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.NonNull;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.hongjian.blog.consts.Order;
@@ -35,16 +36,16 @@ public class LogService {
 
     public PageInfo<Log> selectByParams(String action, String keyword, Integer author, String ip, Date from, Date to, int pn, int size) {
         Map<String, Object> params = new HashMap<>(6);
-        if (action != null) {
+        if (StringUtils.isNotBlank(action)) {
             params.put("action", action);
         }
-        if (keyword != null) {
+        if (StringUtils.isNoneBlank(keyword)) {
             params.put("keyword", "%" + keyword + "%");
         }
         if (author != null) {
             params.put("author", author);
         }
-        if (ip != null) {
+        if (StringUtils.isNoneBlank(ip)) {
             params.put("ip", ip + "%");
         }
         if (from != null) {

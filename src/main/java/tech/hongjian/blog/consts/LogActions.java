@@ -1,5 +1,8 @@
 package tech.hongjian.blog.consts;
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface LogActions {
     String LOGIN = "登录后台";
 
@@ -22,6 +25,11 @@ public interface LogActions {
     String INIT_SITE = "初始化站点";
 
     String RELOAD_SYS = "重启系统";
-    
+
     String VISIT = "访问";
+
+    static List<String> getAllActions() {
+        return Arrays.asList(LOGIN, UP_PWD, UP_INFO, DEL_ATTACH, DEL_ARTICLE, DEL_PAGE,
+                SYS_BACKUP, SYS_SETTING, THEME_SETTING, INIT_SITE, RELOAD_SYS, VISIT);
+    }
 }

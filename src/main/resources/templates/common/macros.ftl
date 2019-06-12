@@ -14,21 +14,21 @@
     </ol>
 </#macro>
 
-<#macro pageAdminNav pageInfo>
+<#macro pageAdminNav pageInfo params=''>
     <div class="clearfix"></div>
     <ul class="pagination m-b-5 pull-right">
         <#if pageInfo.hasPreviousPage>
             <li>
-                <a href="?page=${pageInfo.prePage}" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;上一页</a>
+                <a href="?page=${pageInfo.prePage}<#if params?length &gt; 0>&${params}</#if>" aria-label="Previous"><i class="fa fa-angle-left"></i>&nbsp;上一页</a>
             </li>
         </#if>
 
         <#list pageInfo.navigatepageNums as nav>
-            <li <#if nav == pageInfo.pageNum> class="active"</#if>><a href="?page=${nav}">${nav}</a></li>
+            <li <#if nav == pageInfo.pageNum> class="active"</#if>><a href="?page=${nav}<#if params?length &gt; 0>&${params}</#if>">${nav}</a></li>
         </#list>
 
         <#if pageInfo.hasNextPage>
-            <li><a href="?page=${pageInfo.nextPage}" aria-label="Next">下一页&nbsp;<i class="fa fa-angle-right"></i></a></li>
+            <li><a href="?page=${pageInfo.nextPage}<#if params?length &gt; 0>&${params}</#if>" aria-label="Next">下一页&nbsp;<i class="fa fa-angle-right"></i></a></li>
         </#if>
         <li><span>共${pageInfo.pages}页</span></li>
     </ul>
@@ -92,7 +92,11 @@
         <script src="//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
         <#elseif type == "jquery">
         <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <#elseif type == 'data-picker'>
+        <script src="${request.contextPath}/static/admin/plugins/form-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="${request.contextPath}/static/admin/plugins/form-datepicker/js/locales/bootstrap-datepicker.zh-CN.js"></script>
         </#if>
+
     <#else>
         <#if type == 'install_head'>
             <link href="${request.contextPath}/static/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -150,6 +154,9 @@
             <script src="${request.contextPath}/static/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
         <#elseif type == 'jquery'>
             <script src="${request.contextPath}/static/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <#elseif type == 'data-picker'>
+            <script src="${request.contextPath}/static/admin/plugins/form-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="${request.contextPath}/static/admin/plugins/form-datepicker/js/locales/bootstrap-datepicker.zh-CN.js"></script>
         </#if>
     </#if>
 </#macro>
