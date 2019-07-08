@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tech.hongjian.blog.consts.LogActions;
 import tech.hongjian.blog.controller.BaseController;
 import tech.hongjian.blog.db.entity.Log;
+import tech.hongjian.blog.db.entity.biz.BizLog;
+import tech.hongjian.blog.db.entity.biz.converter.Log2BizLogConverter;
 import tech.hongjian.blog.service.LogService;
 
 import java.text.ParseException;
@@ -49,7 +51,10 @@ public class LogController extends BaseController {
         }
         PageInfo<Log> logs = logService.selectByParams(action, keyword, author, ip,
                 fromDate, toDate, page, limit);
-        model.addAttribute("logs", logs);
+        Log2BizLogConverter converter = new Log2BizLogConverter();
+        PageInfo<BizLog> bizLogs = PageInfo.of(converter.convert(logs.getList()));
+        converter.release();
+        model.addAttribute("logs", bizLogs);
         setQueryParameters(model, action, keyword, author, from, to);
         return "admin/log_list";
     }

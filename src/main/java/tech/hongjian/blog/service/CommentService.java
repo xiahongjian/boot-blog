@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tech.hongjian.blog.consts.Order;
 import tech.hongjian.blog.db.entity.Comment;
 import tech.hongjian.blog.db.entity.Content;
-import tech.hongjian.blog.db.entity.dto.CommentWithChildren;
+import tech.hongjian.blog.db.entity.biz.CommentWithChildren;
 import tech.hongjian.blog.db.mapper.CommentMapper;
 import tech.hongjian.blog.frm.exception.ServiceException;
 import tech.hongjian.blog.utils.BlogUtils;

@@ -11,7 +11,7 @@
     <result column="parent" property="parent" jdbcType="INTEGER" />
   </resultMap>
 
-  <resultMap id="MetaWithCount" type="tech.hongjian.blog.db.entity.dto.MetaWithCount" >
+  <resultMap id="MetaWithCount" type="tech.hongjian.blog.db.entity.biz.MetaWithCount" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="slug" property="slug" jdbcType="VARCHAR" />

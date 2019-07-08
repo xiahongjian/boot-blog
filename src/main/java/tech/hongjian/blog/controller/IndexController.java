@@ -15,7 +15,7 @@ import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.db.entity.Archive;
 import tech.hongjian.blog.db.entity.Comment;
 import tech.hongjian.blog.db.entity.Content;
-import tech.hongjian.blog.db.entity.dto.CommentWithChildren;
+import tech.hongjian.blog.db.entity.biz.CommentWithChildren;
 import tech.hongjian.blog.frm.annotation.AccessLog;
 import tech.hongjian.blog.service.*;
 import tech.hongjian.blog.utils.BlogUtils;

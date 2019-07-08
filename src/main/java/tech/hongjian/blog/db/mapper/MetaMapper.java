@@ -3,7 +3,7 @@ package tech.hongjian.blog.db.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import tech.hongjian.blog.db.entity.Meta;
-import tech.hongjian.blog.db.entity.dto.MetaWithCount;
+import tech.hongjian.blog.db.entity.biz.MetaWithCount;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

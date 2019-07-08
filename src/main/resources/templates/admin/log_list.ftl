@@ -60,6 +60,7 @@
                 <th>内容</th>
                 <th width="8%">访问者</th>
                 <th width="10%">IP</th>
+                <th width="10%">区域</th>
                 <th width="15%">时间</th>
             </tr>
             </thead>
@@ -72,6 +73,7 @@
                         <td>${log.data!}</td>
                         <td>${log.authorId!'-'}</td>
                         <td>${log.ip!'-'}</td>
+                        <td>${log.region!'-'}</td>
                         <td>${log.created?string('yyyy-MM-dd HH:mm:ss')}</td>
                     </tr>
                 </#list>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tech.hongjian.blog.consts.Types;
 import tech.hongjian.blog.controller.BaseController;
-import tech.hongjian.blog.db.entity.dto.MetaWithCount;
+import tech.hongjian.blog.db.entity.biz.MetaWithCount;
 import tech.hongjian.blog.service.MetaService;
 import tech.hongjian.blog.service.SiteService;
 import tech.hongjian.blog.utils.RestResponse;

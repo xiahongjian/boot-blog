@@ -44,7 +44,7 @@ logging:
 
 # mybatis
 mybatis:
-  type-aliases-package: tech.hongjian.blog.db.entity,tech.hongjian.blog.db.dto
+  type-aliases-package: tech.hongjian.blog.db.entity,tech.hongjian.blog.db
 #  typeHandlersPackage: tech.hongjian.blog.db.handler
   mapper-locations: classpath:mapper/*.xml
 

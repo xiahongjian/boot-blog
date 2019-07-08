@@ -17,5 +17,5 @@ public class Statistics implements Serializable {
     // 标签数
     private long tags;
     // 附件数
-    private long attachs;
+    private long attaches;
 }

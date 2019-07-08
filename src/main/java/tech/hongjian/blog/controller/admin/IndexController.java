@@ -49,7 +49,7 @@ public class IndexController extends BaseController {
         List<Log> logs = siteService.recentLogs(20);
         Statistics statistics = siteService.getStatistics();
 
-
+        model.addAttribute("actionsMap", LogActions.getActionMap());
         model.addAttribute("comments", comments);
         model.addAttribute("articles", articles);
         model.addAttribute("logs", logs);

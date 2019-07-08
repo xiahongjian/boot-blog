@@ -27,7 +27,7 @@
             <div class="mini-stat clearfix bg-success bx-shadow">
                 <span class="mini-stat-icon"><i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
                 <div class="mini-stat-info text-right">
-                    上传了<span class="counter">${statistics.attachs}</span>个附件
+                    上传了<span class="counter">${statistics.attaches}</span>个附件
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                     <ul class="list-group">
                         <#list logs as log>
                         <li class="list-group-item">
-                            <span>${log.created?string("yyyy-MM-dd HH:mm:ss")} => ${log.action}</span>
+                            <span>${log.created?string("yyyy-MM-dd HH:mm:ss")} => <#if actionsMap?? && actionsMap[log.action]??>${actionsMap[log.action]}<#else>${log.action!}</#if></span>
                         </li>
                         </#list>
                     </ul>

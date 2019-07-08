@@ -109,7 +109,7 @@ public class SiteService {
         statistics.setArticles(articles);
         statistics.setPages(pages);
         statistics.setComments(comments);
-        statistics.setAttachs(attach);
+        statistics.setAttaches(attach);
         statistics.setTags(tags);
         statistics.setCategories(categories);
 

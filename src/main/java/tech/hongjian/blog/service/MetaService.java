@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.hongjian.blog.db.entity.Meta;
 import tech.hongjian.blog.db.entity.Relationship;
-import tech.hongjian.blog.db.entity.dto.MetaWithCount;
+import tech.hongjian.blog.db.entity.biz.MetaWithCount;
 import tech.hongjian.blog.db.mapper.MetaMapper;
 import tech.hongjian.blog.frm.exception.ServiceException;
 
