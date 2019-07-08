@@ -5,11 +5,10 @@ import org.lionsoul.ip2region.DataBlock;
 import org.lionsoul.ip2region.DbConfig;
 import org.lionsoul.ip2region.DbMakerConfigException;
 import org.lionsoul.ip2region.DbSearcher;
-import org.springframework.util.ResourceUtils;
+import tech.hongjian.blog.consts.IPDataConsts;
 import tech.hongjian.blog.db.entity.Log;
 import tech.hongjian.blog.db.entity.biz.BizLog;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -23,12 +22,9 @@ public class Log2BizLogConverter implements Converter<Log, BizLog> {
     public Log2BizLogConverter() {
         try {
             DbConfig config = new DbConfig();
-            String path = ResourceUtils.getFile("classpath:ip/ip2region.db").getPath();
-            dbSearcher = new DbSearcher(config, path);
+            dbSearcher = new DbSearcher(config, IPDataConsts.IP_DATA);
         } catch (DbMakerConfigException e) {
             log.error("Failed to create DbConfig class instance, {}", e.getMessage(), e);
-        } catch (FileNotFoundException e) {
-            log.error("Failed to find ip db file, {}.", e.getMessage(), e);
         }
     }
 
