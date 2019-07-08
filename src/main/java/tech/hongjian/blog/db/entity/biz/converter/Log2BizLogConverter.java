@@ -32,21 +32,13 @@ public class Log2BizLogConverter implements Converter<Log, BizLog> {
     public BizLog convert(Log o) {
         BizLog bizLog = new BizLog(o);
         try {
-            DataBlock dataBlock = dbSearcher.btreeSearch(o.getIp());
+            DataBlock dataBlock = dbSearcher.memorySearch(o.getIp());
             bizLog.setCityId(dataBlock.getCityId());
             bizLog.setRegion(dataBlock2str(dataBlock));
         } catch (IOException e) {
             log.warn("Search ip location error, {}.", e.getMessage(), e);
         }
         return bizLog;
-    }
-
-    public void release() {
-        try {
-            dbSearcher.close();
-        } catch (IOException e) {
-            log.warn("Failed to close the DbSearch instance, {}.", e.getMessage(), e);
-        }
     }
 
     private String dataBlock2str(DataBlock dataBlock) {

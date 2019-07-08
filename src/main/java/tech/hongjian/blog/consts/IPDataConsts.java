@@ -1,12 +1,11 @@
 package tech.hongjian.blog.consts;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.ResourceUtils;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.DefaultResourceLoader;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 
 /**
  * @author xiahongjian
@@ -19,11 +18,10 @@ public class IPDataConsts {
     static {
         byte[] data = null;
         try {
-            data = Files.readAllBytes(Paths.get(ResourceUtils.getURL(
-                        "classpath:ip/ip2region.db").toURI()));
+            InputStream in = new DefaultResourceLoader().getResource("classpath:ip/ip2region.db").getInputStream();
+            data = IOUtils.toByteArray(in);
         } catch (IOException e) {
             log.error("Failed to read data from ip2region.db, {}", e.getMessage(), e);
-        } catch (URISyntaxException e) {
         }
         IP_DATA = data;
     }
